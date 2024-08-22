@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Live Image Classification</title>
+</head>
+<body>
+    <video id="video" width="640" height="384" autoplay></video>
+    <img id="result" src="" alt="Processed Image" />
+    <script>
+        async function setupCamera() {
+            const video = document.getElementById('video');
+            const stream = await navigator.mediaDevices.getUserMedia({ video: true });
+            video.srcObject = stream;
+        }
+
+        function captureAndSendFrame() {
+            const video = document.getElementById('video');
+            const canvas = document.createElement('canvas');
+            canvas.width = video.videoWidth;
+            canvas.height = video.videoHeight;
+            const context = canvas.getContext('2d');
+            context.drawImage(video, 0, 0, canvas.width, canvas.height);
+
+            canvas.toBlob((blob) => {
+                const formData = new FormData();
+                formData.append('image', blob);
+
+                fetch('/classify', {
+                    method: 'POST',
+                    body: formData
+                })
+                .then(response => response.json())
+                .then(data => {
+                    if (data.image) {
+                        document.getElementById('result').src = 'data:image/png;base64,' + data.image;
+                    } else {
+                        console.error(data.error);
+                    }
+                });
+            }, 'image/jpeg');
+        }
+
+        setupCamera().then(() => {
+            setInterval(captureAndSendFrame, 1000);  // Adjust the interval as needed
+        });
+    </script>
+</body>
+</html>
