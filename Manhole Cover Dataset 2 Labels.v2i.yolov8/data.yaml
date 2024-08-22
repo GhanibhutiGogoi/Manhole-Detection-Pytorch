@@ -1,0 +1,12 @@
+train: "D:/PYTHON/Manhole Cover Detection/Manhole Cover Dataset 2 Labels.v2i.yolov8/train/images"
+val: "D:/PYTHON/Manhole Cover Detection/Manhole Cover Dataset 2 Labels.v2i.yolov8//valid/images"
+test: "D:/PYTHON/Manhole Cover Detection/Manhole Cover Dataset 2 Labels.v2i.yolov8//test/images"
+nc: 2
+names: ['Faulty', 'Good']
+
+roboflow:
+  workspace: create-dataset-for-yolo
+  project: manhole-cover-dataset-2-labels
+  version: 2
+  license: CC BY 4.0
+  url: https://universe.roboflow.com/create-dataset-for-yolo/manhole-cover-dataset-2-labels/dataset/2

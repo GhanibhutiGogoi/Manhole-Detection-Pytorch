@@ -1,0 +1,13 @@
+train: "D:/PYTHON/Manhole Cover Detection/Manhole Cover Dataset YOLO.v2i.yolov8/train/images"
+val: "D:/PYTHON/Manhole Cover Detection/Manhole Cover Dataset YOLO.v2i.yolov8/valid/images"
+test: "D:/PYTHON/Manhole Cover Detection/Manhole Cover Dataset YOLO.v2i.yolov8/test/images"
+
+nc: 4
+names: ['Broken', 'Good', 'Lose', 'Uncovered']
+
+roboflow:
+  workspace: create-dataset-for-yolo
+  project: manhole-cover-dataset-yolo
+  version: 2
+  license: CC BY 4.0
+  url: https://universe.roboflow.com/create-dataset-for-yolo/manhole-cover-dataset-yolo/dataset/2
